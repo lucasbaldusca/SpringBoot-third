@@ -2,29 +2,35 @@ package com.example.projetojpa3tent.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 
 @Entity
-public class Categories {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     String nome;
 
+    @ManyToMany(mappedBy = "categories")
+    private List<Product> products = new ArrayList<>();
+
+    public Category(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Categories that = (Categories) o;
+        Category that = (Category) o;
         return Objects.equals(id, that.id);
     }
 
