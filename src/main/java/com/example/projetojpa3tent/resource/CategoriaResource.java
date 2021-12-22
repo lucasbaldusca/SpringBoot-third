@@ -16,7 +16,6 @@ public class CategoriaResource {
     @Autowired
     CategoriesService categoriesService;
 
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> findById(@PathVariable Integer id){
         Category obj = categoriesService.buscar(id);

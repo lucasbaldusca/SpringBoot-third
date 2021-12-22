@@ -1,5 +1,6 @@
 package com.example.projetojpa3tent.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Product {
     String nome;
     Double preco;
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name = "PRODUCTS_CATEGORY", joinColumns = @JoinColumn(name = "products_id"),
     inverseJoinColumns = @JoinColumn(name = "category_id"))
